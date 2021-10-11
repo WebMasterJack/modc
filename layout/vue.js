@@ -8,10 +8,17 @@ import Home from './components/home.js';
 
 const NotFoundComponent = { template: '<p>Страница не найдена</p>' }
 const routes = [
-    { path: '/', component: Home },
-    { path: '/search', component: Search },
-    
-  ]
+  { path: '/', 
+  component: Home ,
+},
+  { path: '/search', 
+    component: Search ,
+    name: 'Search',
+    props:true
+},
+
+
+]
   
 
 
@@ -23,7 +30,7 @@ const router = VueRouter.createRouter({
   })
   app.use(router); 
 app.mount('#app')
-Vue.createApp(Airport).mount('#air');
+
 
   // 3. Создаём экземпляр маршрутизатора и передаём маршруты в опции `routes`
   // Вы можете передавать и дополнительные опции, но пока не будем усложнять.
