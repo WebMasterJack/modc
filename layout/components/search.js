@@ -1,7 +1,7 @@
 export default {
     name: 'Search',
     async data() {
-      
+        
       console.log(321);
       let {ffrom,fto,datefrom,datereturn,pgr}=this;
       console.log(`From:${ffrom}\n To:${fto}\n Date From:${datefrom}\n Date Return:${datereturn}\n Passengers:${pgr}`);
@@ -15,31 +15,48 @@ let commits = await response.json(); // читаем ответ в формат�
 let data =  commits.data;
 let {flights_back,flights_to}=data;
 
+let firstPostFromCity=flights_back[0].from.city;
+console.log(firstPostFromCity);
 
     return {
-      count: await this.getComputedFlights()
+      count: await this.getComputedFlights(),
+      
+      firstFromCity: await this.firstPostFromCity,
     };
       //vue-async-data
-      
+   
     },
+   
     methods:{
+        
       async getComputedFlights() {
         let {ffrom,fto,datefrom,datereturn,pgr}=this;
         console.log(`From:${ffrom}\n To:${fto}\n Date From:${datefrom}\n Date Return:${datereturn}\n Passengers:${pgr}`);
         let url = `http://modc/fnc-master/public/api/flight?from=${ffrom}&to=${fto}&date1=${datefrom}&date2=${datereturn}&passengers=${pgr} `;
+
         
         let response = await fetch(url);
         let commits = await response.json(); // читаем ответ в формате JSON
         let data =  commits.data;
+        
+        // let firstPostToCity
+        // let firstPostFromFlightCode
+        // let firstPostToFlightCode
+        // let firstPostFromTime
+        // let firstPostToTime
+        // let firstPostFromDate
+        // let firstPostToDate
         let {flights_back,flights_to}=data;
+        console.log(flights_back,flights_to);
+        
         return {flights_back,flights_to};
       }
   },
    props:['name','ffrom','fto','datefrom','datereturn','pgr'],
 
     template: `<div class="container">
-    <p> {{ffrom}} {{fto}} {{datefrom}} {{datereturn}} {{pgr}} </p>
-    {{count}}
+    <p> {{ffrom}} {{fto}} {{datefrom}} {{datereturn}} {{pgr}} {{testa}}</p>
+    {{count}} {{firstFromCity}}
     <section class="mt-5">
         <div class="d-flex justify-content-between align-items-start">
             <h2 class="mb-4"> We found the following flights </h2> <a href="./"
