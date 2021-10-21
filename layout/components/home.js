@@ -36,6 +36,8 @@ export default {
     methods:{
         handleSubmit(ffrom,fto,datefrom,datereturn,pgr) {
             this.$router.replace({name:'Search', params:{ffrom,fto,datefrom,datereturn,pgr}});
+           
+
         }
     },
     

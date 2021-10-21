@@ -1,5 +1,7 @@
 import Search from './components/search.js';
 import Home from './components/home.js';
+import Booking from './components/booking.js';
+
 
 
 
@@ -14,6 +16,11 @@ const routes = [
   { path: '/search', 
     component: Search ,
     name: 'Search',
+    props:true
+},
+{ path: '/booking', 
+    component: Booking ,
+    name: 'Booking',
     props:true
 },
 

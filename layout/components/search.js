@@ -19,6 +19,7 @@ export default {
 // console.log(firstPostFromCity);
 
     return {
+        
         flights_back:null,
         flights_to:null
     };
@@ -44,20 +45,50 @@ export default {
     // let firstPostToTime
     // let firstPostFromDate
     // let firstPostToDate
+    
     fetch(url)
       .then(response => response.json())
       .then((commits) => {
           console.log(commits);
+          console.log('date');
+          
           this.flights_back = commits.data.flights_back;
           this.flights_to = commits.data.flights_to;
       });
+  
   },
    props:['name','ffrom','fto','datefrom','datereturn','pgr'],
+   methods: {
+
+    getHourMinute(flight){
+        let [dateF,dateT]=[this.formatDate(flight.from),this.formatDate(flight.to)];
+        return this.getDivDate(dateF,dateT);
+    },
+    getDivDate(dateF,dateT){
+        let DateMin = ((dateT - dateF)/(1000*60))%60;
+        let DateHours = parseInt(((dateT - dateF)/(1000*60))/60);
+        let NewDate = `${DateHours}:${DateMin}`;    
+        
+        return NewDate;
+    },
+    formatDate(el){
+        let [time,date]=[el.time,el.date];
+        return new Date(date+'T'+time);
+    },
+    BookingRedir(){
+console.log(this.$router);
+        this.$router.replace({name:'Home',params:{}});
+    }
+
+  },
+
+ 
 
     template: `<div class="container">
-    <p> {{ffrom}} {{fto}} {{datefrom}} {{datereturn}} {{pgr}} {{testa}}</p>
-    
+    <p></p>
+   
     <section class="mt-5">
+        
         <div class="d-flex justify-content-between align-items-start">
             <h2 class="mb-4"> We found the following flights </h2> <a href="./"
                 class="btn btn-sm btn-secondary test-4-bback">Back</a>
@@ -79,8 +110,10 @@ export default {
                 <td class="test-4-at">Sukhoi Superjet 100</td>
                 <td> <span class="test-4-dd">{{flight.from.date}}</span> at <span class="test-4-dt">{{flight.from.time}}</span> </td>
                 <td class="test-4-aatime">{{flight.to.time}}</td>
-                <td class="test-4-ft"> <span class="test-4-fhour">1</span>h <span
-                        class="test-4-fminutes">30</span>min </td>
+                <td class="test-4-ft"> <span class="test-4-fhour"></span> <span
+                        class="test-4-fminutes">
+                        {{ getHourMinute(flight) }}
+                        </span>min </td>
                 <td class="test-4-fp">{{flight.cost}}</td>
             </tr>
         </table> 
@@ -100,8 +133,7 @@ export default {
                 <td class="test-4-at">Sukhoi Superjet 100</td>
                 <td> <span class="test-4-dd">{{flight.from.date}}</span> at <span class="test-4-dt">{{flight.from.time}}</span> </td>
                 <td class="test-4-aatime">{{flight.to.time}}</td>
-                <td class="test-4-ft"> <span class="test-4-fhour">1</span>h <span
-                        class="test-4-fminutes">30</span>min </td>
+                <td class="test-4-ft"> <span class="test-4-fhour">{{ getHourMinute(flight) }}</span>min </td>
                 <td class="test-4-fp">{{flight.cost}}</td>
             </tr>
 
@@ -109,7 +141,9 @@ export default {
 
         </table>
         
-        <a href="booking.html" class="btn btn-primary test-4-bgobook mt-4">Go to booking</a>
+        <button @click="BookingRedir()">Tikni</button>
+        
+        
     </section>
 </div>`
 }
