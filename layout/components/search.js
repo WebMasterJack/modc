@@ -1,3 +1,4 @@
+
 export default {
     name: 'Search',
     data() {
@@ -21,7 +22,11 @@ export default {
     return {
         
         flights_back:null,
-        flights_to:null
+        flights_to:null,
+        next_data:{
+            flights_back:null,
+            flights_to:null,
+        }
     };
       //vue-async-data
    
@@ -30,21 +35,12 @@ export default {
     created() {
     // Simple GET request using fetch
     let {ffrom,fto,datefrom,datereturn,pgr}=this;
+    console.log(`eto ${ffrom}`);
     console.log(`From:${ffrom}\n To:${fto}\n Date From:${datefrom}\n Date Return:${datereturn}\n Passengers:${pgr}`);
     let url = `http://modc/fnc-master/public/api/flight?from=${ffrom}&to=${fto}&date1=${datefrom}&date2=${datereturn}&passengers=${pgr} `;
 
     
-    // let response = await fetch(url);
-    // let commits = await response.json(); // читаем ответ в формате JSON
-    // let data =  commits.data;
-    
-    // let firstPostToCity
-    // let firstPostFromFlightCode
-    // let firstPostToFlightCode
-    // let firstPostFromTime
-    // let firstPostToTime
-    // let firstPostFromDate
-    // let firstPostToDate
+   
     
     fetch(url)
       .then(response => response.json())
@@ -59,7 +55,9 @@ export default {
   },
    props:['name','ffrom','fto','datefrom','datereturn','pgr'],
    methods: {
-
+    updateSendData(flight_type,e){
+        this.next_data[flight_type]=e.currentTarget.innerHTML;
+    },
     getHourMinute(flight){
         let [dateF,dateT]=[this.formatDate(flight.from),this.formatDate(flight.to)];
         return this.getDivDate(dateF,dateT);
@@ -75,9 +73,9 @@ export default {
         let [time,date]=[el.time,el.date];
         return new Date(date+'T'+time);
     },
-    BookingRedir(){
+    BookingRedir(ffrom,fto,datefrom,datereturn,pgr){
 console.log(this.$router);
-        this.$router.replace({name:'Home',params:{}});
+        this.$router.replace({name:'Booking',params:{ffrom,fto,datefrom,datereturn,pgr}});
     }
 
   },
@@ -105,7 +103,7 @@ console.log(this.$router);
                 <th>Flight time</th>
                 <th>Cost</th>
             </tr>
-            <tr v-for="flight in flights_to">
+            <tr v-for="flight in flights_to" style="backgroung:gray" v-on:click='updateSendData("flights_back", $event)'>
                 <td class="test-4-fn">{{flight.flight_code}}</td>
                 <td class="test-4-at">Sukhoi Superjet 100</td>
                 <td> <span class="test-4-dd">{{flight.from.date}}</span> at <span class="test-4-dt">{{flight.from.time}}</span> </td>
@@ -128,7 +126,7 @@ console.log(this.$router);
                 <th>Flight time</th>
                 <th>Cost</th>
             </tr>
-            <tr v-for="flight in flights_back">
+            <tr v-for="flight in flights_back"  v-on:click='updateSendData("flights_to", $event)'>
                 <td class="test-4-fn">{{flight.flight_code}}</td>
                 <td class="test-4-at">Sukhoi Superjet 100</td>
                 <td> <span class="test-4-dd">{{flight.from.date}}</span> at <span class="test-4-dt">{{flight.from.time}}</span> </td>
@@ -141,11 +139,13 @@ console.log(this.$router);
 
         </table>
         
-        <button @click="BookingRedir()">Tikni</button>
+        <button @click="BookingRedir(ffrom,fto,datefrom,datereturn,pgr)">dsa</button>
         
         
     </section>
 </div>`
 }
+
+
 //get 
 // out json console

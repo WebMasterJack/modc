@@ -2,11 +2,33 @@ export default {
     name: 'Booking',
     
     data() {
-        console.log(15);    
+
+        let {ffrom,fto,datefrom,datereturn,pgr}=this;
+
         return {
           
         }
+        
+        
       },
+    //   created() {
+    //     // Simple GET request using fetch
+        
+    
+        
+       
+        
+    //     fetch(url)
+    //       .then(response => response.json())
+    //       .then((commits) => {
+    //           console.log(commits);
+    //           console.log('datedadwq');
+              
+    //           this.flights_back = commits.data.flights_back;
+    //           this.flights_to = commits.data.flights_to;
+    //       });
+      
+    //   },
       props:['name','ffrom','fto','datefrom','datereturn','pgr'],
       template:`<div class="container">
       <section class="mt-5">
@@ -22,7 +44,7 @@ export default {
               <h4>Flight information</h4>
           </div>
 
-          <table class="table table-hover table-bordered">
+          <table class="table table-hover table-bordered" v-for="flight in flight_to">
               <tr>
                   <th>Flight</th>
                   <th>From where</th>
@@ -103,4 +125,5 @@ export default {
       </section>
 
   </div>`,
+  
 }

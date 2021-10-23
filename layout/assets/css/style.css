@@ -24,3 +24,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .selected {
     background-color: silver;
 }
+tr:hover{
+    background: gray;
+}
