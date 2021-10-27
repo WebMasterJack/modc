@@ -69,11 +69,11 @@ export default {
                         <option v-for="flight in items" :value="flight.iata">{{flight.name}}</option>
                     </select> </div>
                 <div class="col-12 col-sm-6 col-lg-2 mt-3 col-xl-2 mt-lg-0 pr-lg-0"> <input type="text"
-                        class="form-control test-0-fdt" placeholder="Departing" v-model="datefrom">
+                        class="form-control test-0-fdt" placeholder="Departing" v-model="datefrom">2020-02-02
                     <div class="invalid-feedback">Error message</div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-2 mt-3 col-xl-2 mt-lg-0 pr-xl-0"> <input type="text"
-                        class="form-control test-0-fat" placeholder="Returning" v-model="datereturn">
+                        class="form-control test-0-fat" placeholder="Returning" v-model="datereturn">2020-02-03
                     <div class="invalid-feedback">Error message</div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-2 mt-3 col-xl-1 mt-lg-0 pr-xl-0"> <select

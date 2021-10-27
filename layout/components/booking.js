@@ -3,8 +3,8 @@ export default {
     
     data() {
 
-        let {ffrom,fto,datefrom,datereturn,pgr}=this;
-
+        let {ffrom,fto,datefrom,datereturn,pgr,ndfb,ndft,cost}=this;
+        console.log ({ffrom,fto,datefrom,datereturn,pgr,ndfb,ndft,cost});
         return {
           
         }
@@ -29,7 +29,7 @@ export default {
     //       });
       
     //   },
-      props:['name','ffrom','fto','datefrom','datereturn','pgr'],
+      props:['name','ffrom','fto','datefrom','datereturn','pgr','ndfb','ndft','cost'],
       template:`<div class="container">
       <section class="mt-5">
 
@@ -44,7 +44,7 @@ export default {
               <h4>Flight information</h4>
           </div>
 
-          <table class="table table-hover table-bordered" v-for="flight in flight_to">
+          <table class="table table-hover table-bordered" >
               <tr>
                   <th>Flight</th>
                   <th>From where</th>
@@ -53,43 +53,17 @@ export default {
                   <th>Flight time</th>
                   <th>Cost</th>
               </tr>
-              <tr>
-                  <td class="test-5-fc">FC 2144</td>
-                  <td>Saransk,
-                  Saransk</td>
-                  <td>
-                      <span class="test-5-dd">10-02-2021</span>
-                      at
-                      <span class="test-5-dt">08:00</span>
-                  </td>
-                  <td class="test-5-to">
-                      <span class="test-5-to-cn">Moscow</span>,
-                      <span class="test-5-to-an">Sherementievo</span> 
-                  </td>
-                  <td class="test-5-at">09:30</td>
-                  <td class="test-5-fp">8000</td>
+              <tr v-html="ndft">
+
               </tr>
-              <tr>
-                  <td class="test-5-fc">FC 2161</td>
-                  <td class="test-5-from">
-                      <span class="test-5-from-cn">Moscow</span>,
-                      <span class="test-5-from-an">Sherementievo</span> 
-                  </td>
-                  <td>
-                      <span class="test-5-dd">11-02-2021</span>
-                      at
-                      <span class="test-5-dt">10:00</span>
-                  </td>
-                  <td class="test-5-to">Saransk,
-                  Saransk</td>
-                  <td class="test-5-at">11:30</td>
-                  <td class="test-5-fp">9000</td>
+              <tr v-html="ndfb">
+         
               </tr>
               <tr>
                   <td colspan="5" class="text-right">
                       <b>Total cost</b>
                   </td>
-                  <td colspan="1" class="text-right test-5-price">16000</td>
+                  <td colspan="1" class="text-right test-5-price">{{cost}}</td>
               </tr>
           </table>
       </section>

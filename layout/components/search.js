@@ -23,7 +23,9 @@ export default {
         
         flights_back:null,
         flights_to:null,
+        cost:null,
         next_data:{
+            
             flights_back:null,
             flights_to:null,
         }
@@ -53,10 +55,12 @@ export default {
       });
   
   },
-   props:['name','ffrom','fto','datefrom','datereturn','pgr'],
+   props:['name','ffrom','fto','datefrom','datereturn','pgr','next_data'],
    methods: {
     updateSendData(flight_type,e){
         this.next_data[flight_type]=e.currentTarget.innerHTML;
+        e.currentTarget.classList.add("active");
+        this.cost = parseInt(document.querySelectorAll(".active td:last-child")[0].innerHTML)+parseInt(document.querySelectorAll(".active td:last-child")[1].innerHTML);
     },
     getHourMinute(flight){
         let [dateF,dateT]=[this.formatDate(flight.from),this.formatDate(flight.to)];
@@ -73,9 +77,12 @@ export default {
         let [time,date]=[el.time,el.date];
         return new Date(date+'T'+time);
     },
-    BookingRedir(ffrom,fto,datefrom,datereturn,pgr){
+    BookingRedir(){
 console.log(this.$router);
-        this.$router.replace({name:'Booking',params:{ffrom,fto,datefrom,datereturn,pgr}});
+let ndfb = this.next_data.flights_back;
+let ndft = this.next_data.flights_to;
+let {ffrom,fto,datefrom,datereturn,pgr,cost}=this;
+        this.$router.replace({name:'Booking',params:{ffrom,fto,datefrom,datereturn,pgr,ndfb,ndft,cost}});
     }
 
   },
@@ -139,7 +146,7 @@ console.log(this.$router);
 
         </table>
         
-        <button @click="BookingRedir(ffrom,fto,datefrom,datereturn,pgr)">dsa</button>
+        <button @click="BookingRedir()">dsa</button>
         
         
     </section>
