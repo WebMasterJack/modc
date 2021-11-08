@@ -20,15 +20,15 @@
                 <div class="row">
                     <div class="col-12">
                         <!-- is-invalid class show error message -->
-                        <input type="text" class="form-control is-invalid test-1-fpn" placeholder="Phone">
+                        <input type="phone" class="form-control is-invalid test-1-fpn" placeholder="Phone" v-model="phone">
                         <div class="invalid-feedback test-1-emph">Error message</div>
                     </div>
                     <div class="col-12 mt-2">
-                        <input type="password" class="form-control test-1-fps" placeholder="Password">
+                        <input type="password" class="form-control test-1-fps" placeholder="Password" v-model="password">
                         <div class="invalid-feedback test-1-emps">Error message</div>
                     </div>
                     <div class="col-12 mt-4">
-                        <button class="btn btn-primary w-100 test-1-fbs">Log in</button>
+                        <button class="btn btn-primary w-100 test-1-fbs" @click="getPosts()">Log in</button>
                         <div class="text-center mt-2">
                             Don't have an account yet? <a href="register.html" class="test-1-bsu">Sign up</a>
                             or

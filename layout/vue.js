@@ -1,6 +1,8 @@
 import Search from './components/search.js';
 import Home from './components/home.js';
 import Booking from './components/booking.js';
+import Login from './components/login.js';
+import Profile from './components/profile.js';
 
 
 
@@ -23,7 +25,16 @@ const routes = [
     name: 'Booking',
     props:true
 },
-
+{
+  path: '/login', 
+    component: Login ,
+    name: 'Login'
+},
+{ path: '/profile', 
+    component: Profile ,
+    name: 'Profile',
+    props:true
+},
 
 ]
   

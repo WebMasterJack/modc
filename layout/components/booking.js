@@ -30,6 +30,14 @@ export default {
       
     //   },
       props:['name','ffrom','fto','datefrom','datereturn','pgr','ndfb','ndft','cost'],
+      methods:{
+        BookingReturn(){
+            console.log(this.$router);
+           
+            let {ffrom,fto,datefrom,datereturn,pgr}=this;
+                    this.$router.replace({name:'Search',params:{ffrom,fto,datefrom,datereturn,pgr}});
+                }
+      },
       template:`<div class="container">
       <section class="mt-5">
 
@@ -37,7 +45,7 @@ export default {
               <h2 class="mb-4">
                   Booking
               </h2>
-              <a href="search.html" class="btn btn-sm btn-secondary test-5-bgoback">Back</a>
+              <button @click="BookingReturn()">back</button>
           </div>
 
           <div class="d-flex justify-content-between align-items-baseline mb-4">

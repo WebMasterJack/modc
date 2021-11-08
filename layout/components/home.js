@@ -38,6 +38,9 @@ export default {
             this.$router.replace({name:'Search', params:{ffrom,fto,datefrom,datereturn,pgr}});
            
 
+        },
+        LogIn() {
+            this.$router.replace({name:'Login'});
         }
     },
     
@@ -151,14 +154,15 @@ export default {
         <div class="row">
             <div class="col-3"> <span class="test-0-phone">8 (800) 100-10-10</span> </div>
             <div class="col-7 offset-2">
-                <div class="d-flex justify-content-between"> <a href="http://xxxxxx-m1.wsr.ru">Home</a> <a
-                        href="http://xxxxxx-m1.wsr.ru/login">Log in</a> <a
-                        href="http://xxxxxx-m1.wsr.ru/register">Registration</a> <a
-                        href="http://xxxxxx-m1.wsr.ru/contact">Contact</a> <a
-                        href="http://xxxxxx-m1.wsr.ru/news">News</a> <a href="http://xxxxxx-m1.wsr.ru/return">Return</a>
-                    <a href="http://xxxxxx-m1.wsr.ru/feedback">Feedback</a> </div>
+                <div class="d-flex justify-content-between"><button @click="LogIn()">Log In</button>
+                       </div>
             </div>
         </div>
     </div>
 </footer>`
 }
+/* <a href="http://xxxxxx-m1.wsr.ru">Home</a>  */
+// href="http://xxxxxx-m1.wsr.ru/register">Registration</a> <a
+// href="http://xxxxxx-m1.wsr.ru/contact">Contact</a> <a
+// href="http://xxxxxx-m1.wsr.ru/news">News</a> <a href="http://xxxxxx-m1.wsr.ru/return">Return</a>
+// <a href="http://xxxxxx-m1.wsr.ru/feedback">Feedback</a> 
