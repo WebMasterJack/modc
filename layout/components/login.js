@@ -9,10 +9,14 @@ export default {
         }
       },
       methods: {
+        SignUp(){
+          this.$router.replace({name:'Register'});
+      },
         async PostReqests() {
             let data = {
                 phone: this.phone,
-                password: this.password // sending the option which was selected from dropdown
+                password: this.password,
+                api_token:this.token // sending the option which was selected from dropdown
                 
             };
           const response = await fetch("http://modc/fnc-master/public/api/login", {
@@ -29,7 +33,7 @@ export default {
             let {phone,password,token}=this;
             this.$router.replace({name:'Profile',params:{phone,password,token}});
           }else{alert("error")};
-          console.log(response,this.phone,this.password,this.token);
+        
         }
       },
         template:`<div class="container vh-100 d-flex align-items-center justify-content-center">
@@ -52,7 +56,7 @@ export default {
                     <div class="col-12 mt-4">
                         <button class="btn btn-primary w-100 test-1-fbs" @click="PostReqests()" >Log in</button>
                         <div class="text-center mt-2">
-                            Don't have an account yet? <a href="register.html" class="test-1-bsu">Sign up</a>
+                            Don't have an account yet? <button @click="SignUp()">Registration</button>
                             or
                             <a href="index.html" class="test-1-bbh">Back home</a>
                         </div>

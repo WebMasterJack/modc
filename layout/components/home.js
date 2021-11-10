@@ -41,7 +41,8 @@ export default {
         },
         LogIn() {
             this.$router.replace({name:'Login'});
-        }
+        },
+        
     },
     
     template:`<nav class="navbar navbar-expand-lg navbar-light bg-light">
